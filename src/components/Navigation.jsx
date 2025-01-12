@@ -1,8 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import logo from './Images/logo.png';
+
 export const Navigation = () => {
+    const navigate = useNavigate();
+    
+    // Fetch logged-in user details from localStorage
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    
+    // Logout function
+    const handleLogout = () => {
+        localStorage.removeItem("loggedInUser"); // Remove the logged-in user's data
+        navigate("/login"); // Redirect to login page
+    };
+
     return (
         <div className="navbar-area">
             <nav className="nav-container">
@@ -35,14 +47,14 @@ export const Navigation = () => {
                     </Link>
                 </div>
 
-                {/* Right Section: Dropdown Menus and Login */}
+                {/* Right Section: Dropdown Menus and Login/Logout */}
                 <div className="div-nav-right">
                     {/* Dropdown Menu: For Providers */}
                     <div className="nav-dropdown">
                         <button className="dropdown-btn">
                             For Providers ▼
                         </button>
-                        {/*}
+                        {/* Uncomment and update as needed
                         <ul className="dropdown-menu">
                             <li className="nav-dropdown-item">Practo Prime</li>
                             <li className="nav-dropdown-item">Software for providers</li>
@@ -63,12 +75,18 @@ export const Navigation = () => {
                         </ul>
                     </div>
 
-                    {/* Login Button */}
-                    <Link to="/Auth">
-                        <button className="btn-login">
-                            Login / Signup
+                    {/* Login/Signup or Logout Button */}
+                    {user ? (
+                        <button className="btn-login" onClick={handleLogout}>
+                            Logout
                         </button>
-                    </Link>
+                    ) : (
+                        <Link to="/Auth">
+                            <button className="btn-login">
+                                Login / Signup
+                            </button>
+                        </Link>
+                    )}
                 </div>
             </nav>
         </div>

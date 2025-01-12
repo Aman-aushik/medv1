@@ -9,10 +9,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import doctorImage from './doctor.png';
-
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
+    const navigate = useNavigate();
+
+    // Fetch logged-in user details from localStorage
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    // Logout function
+    const handleLogout = () => {
+        localStorage.removeItem("loggedInUser"); // Remove the logged-in user's data
+        navigate("/login"); // Redirect to login page
+    };
+
     const healthcareTips = [
         {
             tip: "Stay hydrated and drink at least 8 glasses of water daily.",
@@ -50,6 +61,12 @@ export const HomePage = () => {
 
     return (
         <div className="homepage-container">
+            {/* Welcome Bar */}
+            <div className="home-welcome-bar">
+                <p>Welcome, {user ? user.name : "Guest"}!</p>
+                
+            </div>
+
             <div className="home-search-area">
                 <FindDoctorSearch />
                 <div className="home-try-plus-img-container">
@@ -59,11 +76,11 @@ export const HomePage = () => {
 
             <section className="home-banner">
                 <div className="home-banner-left">
-                <h1 style={{ color: "yellow",fontSize:"40px",marginBottom: '-15px', padding: '0px'}}>Tip of the Day</h1>
-                <Slider {...sliderSettings} >
+                    <h1 style={{ color: "yellow", fontSize: "40px", marginBottom: '-15px', padding: '0px' }}>Tip of the Day</h1>
+                    <Slider {...sliderSettings}>
                         {healthcareTips.map((tip, index) => (
                             <div key={index} className="health-tip-slide">
-                                <h3 style={{ color: "white",fontSize:"25px"}}>{tip.topic}</h3>
+                                <h3 style={{ color: "white", fontSize: "25px" }}>{tip.topic}</h3>
                                 <p>{tip.tip}</p>
                                 <a href={tip.link} target="_blank" rel="noopener noreferrer" className="btn-knowmore">
                                     Read More
@@ -73,16 +90,14 @@ export const HomePage = () => {
                     </Slider>
                 </div>
                 <div className="home-banner-right">
-                <img src={doctorImage} alt="banner" />
+                    <img src={doctorImage} alt="banner" />
                 </div>
             </section>
 
             <section className="home-facilities">
-                <FacilityCard image={process.env.PUBLIC_URL + '/images/instant_video_consulation.webp'} background="#AFCFED" title="Instant Video Consultation" sub="Connect within 60 secs" />
                 <FacilityCard image={process.env.PUBLIC_URL + '/images/find_doctors.webp'} background="#98CBD6" title="Find Doctors Near You" sub="Confirmed appointments" />
                 <FacilityCard image={process.env.PUBLIC_URL + '/images/home_medicines.webp'} background="#ccd0db" title="Medicines" sub="Essentials at your doorstep" />
                 <FacilityCard image={process.env.PUBLIC_URL + '/images/lab_tests.png'} background="#afcfed" title="Lab Tests" sub="Sample pickup at your home" />
-                <FacilityCard image={process.env.PUBLIC_URL + '/images/home_surgeries.webp'} background="#d5d8fc" title="Surgeries" sub="Safe and trusted surgery centers" />
             </section>
 
             <section className="home-consult">

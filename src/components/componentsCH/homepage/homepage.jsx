@@ -1,19 +1,22 @@
 import React from "react";
-import "./homepage.css";
+import { useNavigate } from "react-router-dom";
 
-const Homepage = ({setLoginUser}) => {
+const HomePage = () => {
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-    const Change = () => {
-        setLoginUser({});
-    }
+    const logout = () => {
+        localStorage.removeItem("loggedInUser"); // Clear logged-in user
+        navigate("/login"); // Redirect to Login Page
+    };
 
     return (
-        <div className="homepage">
-            <h1>Hello Homepage</h1>
-            <div className="button"onClick={Change}>Logout</div>
+        <div>
+            <h1>Welcome, {user ? user.name : "Guest"}!</h1>
+            <p>Mobile: {user?.mobile}</p>
+            <button onClick={logout}>Logout</button>
         </div>
-    )
-}
+    );
+};
 
-
-export default Homepage
+export default HomePage;

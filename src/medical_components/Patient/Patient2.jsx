@@ -133,7 +133,7 @@ class Patient2 extends Component {
     return (
       <div id="Patient2" className="tablet:grid-col padding-x-2">
         <div className="width-full flex-column flex-align-center">
-          <h2 style={{ marginBottom: "15px" }}> Please check all the statement below that applies you</h2>
+          <h2 style={{ marginBottom: "15px",color:"black"}}> Please check all the statement below that applies you</h2>
           <p> Select one answer in each row </p>
         </div>
         <div className="radioButtonDiv ">

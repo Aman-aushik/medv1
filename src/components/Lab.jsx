@@ -1,8 +1,8 @@
-import React from "react";
+
 import { Container } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import "./Lab.css";
-
+import React, { useState, useEffect } from 'react';
 
 export const Lab = () => {
   return (
@@ -174,8 +174,11 @@ export const Lab = () => {
                
 
                    <br />
+                   {/*
                    <h4 className="left">Top booked Medical tests</h4>
                    <p className="left">Get 10% Health Cashback*<strong>T&C</strong></p>
+                   </div>
+                   */}
                    <br />
                    <div className="test_medical">
                       <div className="tests">

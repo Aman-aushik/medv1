@@ -45,7 +45,7 @@ export const Medicines = () => {
             <br />
             <Container>
                 <div className="health_div">
-                    <h4>Browse medicines & health products</h4>
+                    <h4>SYMPTOM CHECKER</h4>
                     <br />
                     {showHomePopup && (
         <div className="popup-overlay">

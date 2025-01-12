@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-
+import logo from './Images/logo.png';
 export const Navigation = () => {
     return (
         <div className="navbar-area">
@@ -10,7 +10,7 @@ export const Navigation = () => {
                 <div className="div-nav-left">
                     <Link to="/">
                         <img 
-                            src={process.env.PUBLIC_URL + "/images/logo.svg"} 
+                            src={logo}
                             alt="practo-logo" 
                             className="nav-logo" 
                         />
@@ -42,12 +42,14 @@ export const Navigation = () => {
                         <button className="dropdown-btn">
                             For Providers ▼
                         </button>
+                        {/*}
                         <ul className="dropdown-menu">
                             <li className="nav-dropdown-item">Practo Prime</li>
                             <li className="nav-dropdown-item">Software for providers</li>
                             <li className="nav-dropdown-item">List your practice for Free</li>
                             <li className="nav-dropdown-item">Corporate wellness</li>
                         </ul>
+                        */}
                     </div>
 
                     {/* Dropdown Menu: Security & Help */}

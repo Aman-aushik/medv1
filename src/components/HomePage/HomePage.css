@@ -50,6 +50,7 @@
     width: 50%;
     text-align: left;
     padding: 40px 0px 40px 60px;
+    margin-top: -40px;
 }
 
 .home-banner-practo-care {
@@ -294,3 +295,35 @@
     justify-content: space-between;
     margin-right: 15px;
 }
+
+.health-tip-slide {
+    text-align: left;
+    padding: 20px;
+    color: white;
+}
+
+.health-tip-slide h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.health-tip-slide p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.health-tip-slide a {
+    color: #3743ab;
+    text-decoration: none;
+    font-weight: 700;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.health-tip-slide a:hover {
+    background: #f0f0f5;
+}
+

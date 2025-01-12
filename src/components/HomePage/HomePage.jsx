@@ -5,8 +5,46 @@ import { ConsultCard } from './ConsultCard';
 import { FacilityCard } from './FacilityCard';
 import { FindDoctorSearch } from './FindDoctorSearch';
 import { UserReviewCarousel } from './UserReviewCarousel';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+import doctorImage from './doctor.png';
+
+
 
 export const HomePage = () => {
+    const healthcareTips = [
+        {
+            tip: "Stay hydrated and drink at least 8 glasses of water daily.",
+            topic: "Hydration",
+            link: "https://www.healthline.com/health/8-glasses-of-water"
+        },
+        {
+            tip: "Exercise regularly for at least 30 minutes a day.",
+            topic: "Physical Health",
+            link: "https://www.cdc.gov/physicalactivity/basics/adults/index.htm"
+        },
+        {
+            tip: "Get at least 7-8 hours of quality sleep every night.",
+            topic: "Sleep Hygiene",
+            link: "https://www.sleepfoundation.org/sleep-hygiene"
+        },
+        {
+            tip: "Maintain a balanced diet rich in fruits and vegetables.",
+            topic: "Nutrition",
+            link: "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"
+        }
+    ];
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000 // 4 seconds
+    };
 
     const locationIcon = process.env.PUBLIC_URL + './images/home_location_icon.svg';
 
@@ -21,15 +59,21 @@ export const HomePage = () => {
 
             <section className="home-banner">
                 <div className="home-banner-left">
-                    <div className="home-banner-practo-care">
-                        <img src={process.env.PUBLIC_URL + '/images/practo_care.webp'} alt="practo_care" />
-                    </div>
-                    <p>Choose the experts in end-to-end surgical care.</p>
-                    <p>You are in safe hands</p>
-                    <button className="btn-knowmore">Know more</button>
+                <h1 style={{ color: "yellow",fontSize:"40px",marginBottom: '-15px', padding: '0px'}}>Tip of the Day</h1>
+                <Slider {...sliderSettings} >
+                        {healthcareTips.map((tip, index) => (
+                            <div key={index} className="health-tip-slide">
+                                <h3 style={{ color: "white",fontSize:"25px"}}>{tip.topic}</h3>
+                                <p>{tip.tip}</p>
+                                <a href={tip.link} target="_blank" rel="noopener noreferrer" className="btn-knowmore">
+                                    Read More
+                                </a>
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
                 <div className="home-banner-right">
-                    <img src={process.env.PUBLIC_URL + '/images/home_banner.webp'} alt="banner" />
+                <img src={doctorImage} alt="banner" />
                 </div>
             </section>
 
